@@ -1,4 +1,3 @@
-import { StaticImage } from "gatsby-plugin-image"
 import React, { useRef, useContext } from "react"
 import { AiOutlineFolderView } from "react-icons/ai"
 import { State } from "../../pages/movies"
@@ -12,7 +11,7 @@ const Movie = ({ title, image_url: image }) => {
 
   return (
     <div onClick={onClickHandler}>
-      <img src={image} />
+      <img src={image} alt={title} />
       <p ref={itemRef}>{title}</p>
       <AiOutlineFolderView />
     </div>

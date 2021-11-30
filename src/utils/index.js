@@ -1,25 +1,17 @@
-import axios from "axios"
-import { useState } from "react"
+import firebase from "firebase/app"
+import "firebase/firestore"
 
-export const FetchGenre = () => {
-  const [state, setState] = useState([])
-  const options = {
-    method: "GET",
-    url: "https://data-imdb1.p.rapidapi.com/genres/",
-    headers: {
-      "x-rapidapi-host": "data-imdb1.p.rapidapi.com",
-      "x-rapidapi-key": "20c32f1212msh2cfff196197bdf5p17f61cjsn450944cdf0ca",
-    },
-  }
-
-  axios
-    .request(options)
-    .then(function (response) {
-      // console.log(response.data)
-      setState(response.data)
-    })
-    .catch(function (error) {
-      console.error(error)
-    })
-  return state
+const config = {
+  apiKey: "AIzaSyDg32BqTW3Gxu9IoGB-RhV89dUSkMLg4Bw",
+  authDomain: "movie-931e2.firebaseapp.com",
+  projectId: "movie-931e2",
+  storageBucket: "movie-931e2.appspot.com",
+  messagingSenderId: "37510736313",
+  appId: "1:37510736313:web:83a4c5803c00d7ab922e68",
 }
+
+firebase.initializeApp(config)
+
+const firestore = firebase.firestore()
+
+export { firestore }

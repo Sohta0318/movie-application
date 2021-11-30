@@ -43,7 +43,8 @@
     "react-icons": "^4.3.1",
     "react-responsive-carousel": "^3.2.22",
     "slugify": "^1.6.3",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "xhr2": "^0.2.1"
   },
   "devDependencies": {
     "prettier": "^2.4.1"

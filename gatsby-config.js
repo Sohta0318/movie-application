@@ -71,7 +71,6 @@ module.exports = {
               // ドキュメントデータ
               title: doc.title, // ドキュメントデータのフィールドname
               date: doc.date, // ドキュメントデータのフィールドemail
-              genre: doc.genre,
             }),
           },
         ],

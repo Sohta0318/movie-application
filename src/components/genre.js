@@ -15,14 +15,11 @@ const Genre = () => {
         "x-rapidapi-key": "20c32f1212msh2cfff196197bdf5p17f61cjsn450944cdf0ca",
       },
     }
-    axios
-      .request(options)
-      .then(function (response) {
-        setTests(response.data.results)
-      })
-      .catch(function (error) {
-        console.error(error)
-      })
+    const Item = async () => {
+      const response = await axios.request(options)
+      setTests(response.data.results)
+    }
+    Item()
   }, [])
 
   // console.log(tests)
