@@ -9,7 +9,7 @@ const Navbar = () => {
         <div className="nav-links">
           {links.map(link => {
             return (
-              <Link to={link.url} key={link.id}>
+              <Link to={link.url} key={link.id} className="links">
                 {link.text}
               </Link>
             )

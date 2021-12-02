@@ -20,7 +20,6 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`, // Needed for dynamic images
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-nodejs`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -35,21 +34,6 @@ module.exports = {
       },
     },
 
-    {
-      resolve: "gatsby-plugin-express",
-      options: {
-        output: "config/gatsby-express.json",
-      },
-    },
-
-    {
-      resolve: `gatsby-source-contentful`,
-      options: {
-        spaceId: `i7cys4mk2o06`,
-        // Learn about environment variables: https://gatsby.dev/env-vars
-        accessToken: process.env.CONTENTFUL_API_KEY,
-      },
-    },
     {
       resolve: `gatsby-source-strapi`,
       options: {

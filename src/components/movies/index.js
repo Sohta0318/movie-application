@@ -3,7 +3,7 @@ import Movie from "./Card"
 import axios from "axios"
 import { State } from "../../pages/movies"
 
-const AllMovies = () => {
+const AllMovies = ({ setChoice }) => {
   const [movies, setMovies] = useState([])
   const [all, setAll] = useState([])
   const { option } = useContext(State)
@@ -27,10 +27,7 @@ const AllMovies = () => {
     Item()
   }, [option])
 
-  // it has to be fixed
-  //it renders twice
   useEffect(() => {
-    // const item = []
     setAll([])
     movies.map(movie => {
       const id = movie.imdb_id
@@ -52,12 +49,18 @@ const AllMovies = () => {
     })
   }, [movies])
 
-  console.log(all)
-
+  const singleCard = movie => {
+    return (
+      <label key={movie.imdb_id}>
+        <input type="radio" value={JSON.stringify(movie)}></input>
+        <Movie {...movie} />
+      </label>
+    )
+  }
   return (
-    <div className="movies-list">
+    <div className="movies-list" onChange={e => setChoice(e.target.value)}>
       {all.map(movie => {
-        return <Movie {...movie} key={movie.imdb_id} />
+        return singleCard(movie)
       })}
     </div>
   )

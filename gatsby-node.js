@@ -8,7 +8,7 @@ admin.initializeApp({
 
 var db = admin.firestore()
 
-var docRef = db.collection("test").doc("5")
+var docRef = db.collection("users").doc("5")
 
 var setAda = docRef.set({
   first: "Sohta",

@@ -1,19 +1,20 @@
-import React, { useRef, useContext } from "react"
-import { AiOutlineFolderView } from "react-icons/ai"
-import { State } from "../../pages/movies"
+import React from "react"
+import { FcClapperboard, FcFilm } from "react-icons/fc"
 
-const Movie = ({ title, image_url: image }) => {
-  const { setPara } = useContext(State)
-  const itemRef = useRef()
-  const onClickHandler = () => {
-    setPara(itemRef.current.innerText)
-  }
-
+const Movie = ({ title, image_url: image, rating }) => {
   return (
-    <div onClick={onClickHandler}>
-      <img src={image} alt={title} />
-      <p ref={itemRef}>{title}</p>
-      <AiOutlineFolderView />
+    <div>
+      <img src={image} alt={title} className="movie-image" />
+      <p>{title}</p>
+      <div className="icon">
+        <div className="rating">
+          <FcFilm className="icon-film" />
+          <span>{rating}</span>
+        </div>
+        <button>
+          <FcClapperboard />
+        </button>
+      </div>
     </div>
   )
 }
