@@ -3,9 +3,7 @@
  *
  * See: https://www.gatsbyjs.com/docs/gatsby-config/
  */
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-})
+require("dotenv").config()
 
 module.exports = {
   /* Your site config here */
@@ -20,13 +18,6 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`, // Needed for dynamic images
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `utils`,
-        path: `${__dirname}/src/utils`,
-      },
-    },
     {
       resolve: `gatsby-plugin-styled-components`,
       options: {
@@ -44,20 +35,17 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-firesource", //プラグイン名
+      resolve: "gatsby-plugin-firebase",
       options: {
-        credential: require("./firebase.json"), //認証情報
-        types: [
-          {
-            type: "Movie", // GraphQL上で表示される名前
-            collection: "movies", // 作成したコレクション名
-            map: doc => ({
-              // ドキュメントデータ
-              title: doc.title, // ドキュメントデータのフィールドname
-              date: doc.date, // ドキュメントデータのフィールドemail
-            }),
-          },
-        ],
+        credentials: {
+          apiKey: process.env.apiKey,
+          authDomain: process.env.authDomain,
+          databaseURL: process.env.databaseURL,
+          projectId: process.env.projectId,
+          storageBucket: process.env.storageBucket,
+          messagingSenderId: process.env.messagingSenderId,
+          appId: process.env.appId,
+        },
       },
     },
   ],

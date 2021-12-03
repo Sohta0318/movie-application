@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"
-import { graphql } from "gatsby"
 const Favorites = () => {
   const [data, setData] = useState([])
   useEffect(() => {
@@ -26,15 +25,3 @@ const Favorites = () => {
 }
 
 export default Favorites
-
-export const query = graphql`
-  {
-    allMovie {
-      edges {
-        node {
-          title
-        }
-      }
-    }
-  }
-`
