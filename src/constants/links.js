@@ -1,8 +1,8 @@
 const links = [
   {
     id: 1,
-    text: "main",
-    url: "/",
+    text: "home",
+    url: "/home",
   },
   {
     id: 2,

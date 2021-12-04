@@ -1,13 +1,14 @@
-// import { graphql } from "gatsby"
 import React, { useState, createContext } from "react"
 import AllMovies from "../components/movies"
 import Genre from "../components/genre"
 import { useDispatch, useSelector } from "react-redux"
 import { setMovie } from "../store/slice"
+import { useAuth } from "gatsby-theme-firebase"
 
 export const State = createContext()
 
 const Movies = () => {
+  const { isLoggedIn } = useAuth()
   const favorites = useSelector(state => state.first.data)
   const dispatch = useDispatch()
   const [option, setOption] = useState()
@@ -31,14 +32,11 @@ const Movies = () => {
   }
 
   const addHandler = async movie => {
-    const response = await fetch(
-      "https://movie-931e2-default-rtdb.firebaseio.com/movies.json",
-      {
-        method: "POST",
-        body: JSON.stringify(movie),
-        headers: { "Content-Type": "application/json" },
-      }
-    )
+    await fetch("https://movie-931e2-default-rtdb.firebaseio.com/movies.json", {
+      method: "POST",
+      body: JSON.stringify(movie),
+      headers: { "Content-Type": "application/json" },
+    })
   }
 
   const handleSubmit = e => {
@@ -53,16 +51,20 @@ const Movies = () => {
   // console.log(favorites)
 
   return (
-    <State.Provider value={value}>
-      <>
-        <Genre />
-        <form onChange={handleSubmit}>
-          <div>
-            <AllMovies setChoice={setChoice} />
-          </div>
-        </form>
-      </>
-    </State.Provider>
+    <>
+      {isLoggedIn && (
+        <State.Provider value={value}>
+          <>
+            <Genre />
+            <form onChange={handleSubmit}>
+              <div>
+                <AllMovies setChoice={setChoice} />
+              </div>
+            </form>
+          </>
+        </State.Provider>
+      )}
+    </>
   )
 }
 
