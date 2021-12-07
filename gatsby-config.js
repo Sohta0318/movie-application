@@ -21,6 +21,7 @@ module.exports = {
     `gatsby-transformer-sharp`, // Needed for dynamic images
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-nodejs`,
+
     {
       resolve: `gatsby-plugin-create-client-paths`,
       options: { prefixes: [`/app/*`] },
@@ -56,6 +57,22 @@ module.exports = {
         socialLogins: ["google", "email"], // Googleアカウント認証の場合はこう
         // 他の認証も使いたい場合は配列内に追記
         // socialLogins: ["google", "twitter", "facebook", "github"]
+      },
+    },
+    {
+      resolve: "gatsby-firesource", //プラグイン名
+      options: {
+        credential: require("./firebase.json"), //認証情報
+        types: [
+          {
+            type: "Genre", // GraphQL上で表示される名前
+            collection: "genre", // 作成したコレクション名
+            map: doc => ({
+              // ドキュメントデータ
+              data: doc.data, // ドキュメントデータのフィールドname // ドキュメントデータのフィールドemail
+            }),
+          },
+        ],
       },
     },
   ],

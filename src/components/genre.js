@@ -1,28 +1,31 @@
 import React from "react"
-import { useState, useEffect, useContext } from "react"
-import axios from "axios"
+import { useContext } from "react"
+import { useStaticQuery, graphql } from "gatsby"
 import { State } from "../pages/movies"
 
-const Genre = () => {
-  const [tests, setTests] = useState([])
-  const { setOption } = useContext(State)
-  useEffect(() => {
-    const options = {
-      method: "GET",
-      url: "https://data-imdb1.p.rapidapi.com/genres/",
-      headers: {
-        "x-rapidapi-host": "data-imdb1.p.rapidapi.com",
-        "x-rapidapi-key": "20c32f1212msh2cfff196197bdf5p17f61cjsn450944cdf0ca",
-      },
+const query = graphql`
+  {
+    allGenre {
+      nodes {
+        data {
+          results {
+            genre
+          }
+        }
+      }
+      totalCount
     }
-    const Item = async () => {
-      const response = await axios.request(options)
-      setTests(response.data.results)
-    }
-    Item()
-  }, [])
+  }
+`
 
-  // console.log(tests)
+const Genre = () => {
+  const data = useStaticQuery(query)
+  const {
+    allGenre: { nodes },
+  } = data
+  const tests = nodes[0].data.results
+  const { setOption } = useContext(State)
+  console.log(tests)
 
   return (
     <div>
