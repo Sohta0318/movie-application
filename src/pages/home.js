@@ -5,7 +5,6 @@ import { useAuth } from "gatsby-theme-firebase"
 
 const Home = () => {
   const { isLoggedIn } = useAuth()
-  console.log(isLoggedIn)
   return (
     <>
       {isLoggedIn && (

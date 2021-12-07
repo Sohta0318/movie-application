@@ -8,7 +8,9 @@ import { useAuth } from "gatsby-theme-firebase"
 export const State = createContext()
 
 const Movies = () => {
-  const { isLoggedIn } = useAuth()
+  const { isLoggedIn, profile } = useAuth()
+  const id = profile?.uid
+  const name = profile?.displayName
   const favorites = useSelector(state => state.first.data)
   const dispatch = useDispatch()
   const [option, setOption] = useState()
@@ -32,11 +34,14 @@ const Movies = () => {
   }
 
   const addHandler = async movie => {
-    await fetch("https://movie-931e2-default-rtdb.firebaseio.com/movies.json", {
-      method: "POST",
-      body: JSON.stringify(movie),
-      headers: { "Content-Type": "application/json" },
-    })
+    await fetch(
+      `https://movie-931e2-default-rtdb.firebaseio.com/movies/${id}.json`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(movie),
+      }
+    )
   }
 
   const handleSubmit = e => {
