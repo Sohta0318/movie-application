@@ -25,7 +25,7 @@ const Genre = () => {
   } = data
   const tests = nodes[0].data.results
   const { setOption } = useContext(State)
-  console.log(tests)
+  // console.log(tests)
 
   return (
     <div>
