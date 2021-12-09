@@ -72,6 +72,14 @@ module.exports = {
               data: doc.data, // ドキュメントデータのフィールドname // ドキュメントデータのフィールドemail
             }),
           },
+          {
+            type: "Title", // GraphQL上で表示される名前
+            collection: "details", // 作成したコレクション名
+            map: doc => ({
+              // ドキュメントデータ
+              data: doc.detail, // ドキュメントデータのフィールドname // ドキュメントデータのフィールドemail
+            }),
+          },
         ],
       },
     },
