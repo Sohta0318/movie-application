@@ -34,14 +34,11 @@ const Movies = () => {
   }
 
   const addHandler = async movie => {
-    await fetch(
-      `https://movie-931e2-default-rtdb.firebaseio.com/movies/${id}.json`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(movie),
-      }
-    )
+    await fetch(`https://test-d8d3f-default-rtdb.firebaseio.com//movies.json`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(movie),
+    })
   }
 
   const handleSubmit = e => {
@@ -51,9 +48,6 @@ const Movies = () => {
 
     addHandler(movie)
   }
-
-  // console.log(movie)
-  // console.log(favorites)
 
   return (
     <>

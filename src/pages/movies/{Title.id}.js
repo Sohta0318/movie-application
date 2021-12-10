@@ -1,16 +1,33 @@
 import React from "react"
 import { graphql } from "gatsby"
+import Movie from "../../components/movies/Card"
 
-const ByGenre = ({ data }) => {
+const EachGenre = ({ data }) => {
   const {
-    title: { data: detail },
+    title: { data: movies },
   } = data
-  console.log(detail)
-  return <div></div>
+  const singleCard = movie => {
+    return (
+      <label key={movie.imdb_id}>
+        <input type="radio" value={JSON.stringify(movie.results)}></input>
+        <Movie {...movie.results} />
+      </label>
+    )
+  }
+  return (
+    <>
+      <h1>{data.title.id}</h1>
+      <div className="movies-list">
+        {movies.map(movie => {
+          return singleCard(movie)
+        })}
+      </div>
+    </>
+  )
 }
 
 export const query = graphql`
-  query GetTitle($id: String) {
+  query eachGenre($id: String) {
     title(id: { eq: $id }) {
       data {
         results {
@@ -19,15 +36,17 @@ export const query = graphql`
             genre
           }
           image_url
+          imdb_id
           plot
           rating
-          title
-          trailer
           year
+          trailer
+          title
         }
       }
+      id
     }
   }
 `
 
-export default ByGenre
+export default EachGenre

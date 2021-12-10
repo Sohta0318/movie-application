@@ -2,6 +2,8 @@ import React from "react"
 import { useContext } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { State } from "../pages/movies"
+import { navigate } from "gatsby"
+import { useEffect } from "react"
 
 const query = graphql`
   {
@@ -24,8 +26,14 @@ const Genre = () => {
     allGenre: { nodes },
   } = data
   const tests = nodes[0].data.results
-  const { setOption } = useContext(State)
-  // console.log(tests)
+  const { setOption, option } = useContext(State)
+
+  useEffect(() => {
+    if (option !== undefined) {
+      const lower = option.toLowerCase()
+      navigate(`/movies/${lower}`)
+    }
+  }, [option])
 
   return (
     <div>
@@ -36,6 +44,9 @@ const Genre = () => {
         id="genre-select"
         onChange={e => {
           setOption(e.target.value)
+          // if (option !== undefined) {
+          //   navigate(`/movies/${option}`)
+          // }
         }}
       >
         <option value="">--Please choose a genre--</option>

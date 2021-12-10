@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react"
+import React from "react"
 import Movie from "./Card"
 import { useStaticQuery, graphql } from "gatsby"
 
@@ -19,6 +19,7 @@ const query = graphql`
             release
             trailer
             year
+            imdb_id
           }
         }
         id
@@ -30,15 +31,21 @@ const query = graphql`
 const AllMovies = ({ setChoice }) => {
   const data = useStaticQuery(query)
 
+  const all = []
+
   const {
     allTitle: { nodes: details },
   } = data
 
-  console.log(details)
+  details.map(detail => {
+    detail.data.map(item => {
+      all.push(item.results)
+    })
+  })
 
-  const singleCard = movie => {
+  const singleCard = (movie, index) => {
     return (
-      <label key={movie.id}>
+      <label key={index}>
         <input type="radio" value={JSON.stringify(movie)}></input>
         <Movie {...movie} />
       </label>
@@ -46,7 +53,7 @@ const AllMovies = ({ setChoice }) => {
   }
   return (
     <div className="movies-list" onChange={e => setChoice(e.target.value)}>
-      {details.map(movie => {
+      {all.map(movie => {
         return singleCard(movie)
       })}
     </div>
