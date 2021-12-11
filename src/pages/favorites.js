@@ -27,7 +27,7 @@ const Favorites = () => {
   return (
     <>
       {isLoggedIn && (
-        <>
+        <div className="favorite">
           {obj.map(data => {
             return (
               <div key={data.id} className="favoriteCard">
@@ -35,7 +35,7 @@ const Favorites = () => {
               </div>
             )
           })}
-        </>
+        </div>
       )}
     </>
   )

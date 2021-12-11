@@ -257,6 +257,19 @@ body {
 
 /* Favorite page */
 
+.favorite {
+  margin-top: 5em;
+}
+
 .favoriteCard :hover {
-  background-image: url("https://m.media-amazon.com/images/M/MV5BZjhkMDM4MWItZTVjOC00ZDRhLThmYTAtM2I5NzBmNmNlMzI1XkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_UX182_CR0,0,182,268_AL_.jpg");
+  /* background-image: url("https://m.media-amazon.com/images/M/MV5BZjhkMDM4MWItZTVjOC00ZDRhLThmYTAtM2I5NzBmNmNlMzI1XkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_UX182_CR0,0,182,268_AL_.jpg");
+  width: 100%;
+  height: 100%; */
+}
+
+.favoriteCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4em;
 }
