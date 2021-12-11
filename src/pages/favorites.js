@@ -4,27 +4,39 @@ const Favorites = () => {
   const { isLoggedIn, profile } = useAuth()
   const id = profile?.uid
   const name = profile?.displayName
-  const [data, setData] = useState([])
+  const [data, setData] = useState({})
+  const obj = []
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `https://movie-931e2-default-rtdb.firebaseio.com/movies/uf5g0uAZrrM1eR68Cjp7ucSIyx62.json`
+        `https://test-d8d3f-default-rtdb.firebaseio.com//movies.json`
       )
       const data = await response.json()
-      setData(all => [...all, data])
+      setData(data)
     }
     fetchData()
   }, [])
-  console.log(data)
 
-  //need to be fixed
-  //put in one array to map
+  for (const i in data) {
+    obj.push(data[i])
+  }
+
+  console.log(obj)
+
+  // when hover title shoe image
   return (
     <>
-      {isLoggedIn && <></>}
-      {/* data.map(data => {
-        return <p key={data.imdb_id}>{data.banner}</p>
-      }) */}
+      {isLoggedIn && (
+        <>
+          {obj.map(data => {
+            return (
+              <div key={data.id} className="favoriteCard">
+                <p>{data.title}</p>
+              </div>
+            )
+          })}
+        </>
+      )}
     </>
   )
 }

@@ -254,3 +254,9 @@ body {
   align-content: center;
   margin-left: 5em;
 }
+
+/* Favorite page */
+
+.favoriteCard :hover {
+  background-image: url("https://m.media-amazon.com/images/M/MV5BZjhkMDM4MWItZTVjOC00ZDRhLThmYTAtM2I5NzBmNmNlMzI1XkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_UX182_CR0,0,182,268_AL_.jpg");
+}
