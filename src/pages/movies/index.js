@@ -33,6 +33,8 @@ const Movies = () => {
     id: favorites?.imdb_id,
   }
 
+  console.log(favorites)
+
   const addHandler = async movie => {
     await fetch(`https://test-d8d3f-default-rtdb.firebaseio.com//movies.json`, {
       method: "POST",

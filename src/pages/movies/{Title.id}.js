@@ -35,6 +35,7 @@ export const query = graphql`
           gen {
             genre
           }
+          banner
           image_url
           imdb_id
           plot

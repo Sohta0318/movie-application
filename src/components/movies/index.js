@@ -8,6 +8,7 @@ const query = graphql`
       nodes {
         data {
           results {
+            banner
             image_url
             description
             gen {
