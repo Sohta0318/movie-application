@@ -33,7 +33,9 @@ const Movies = () => {
     id: favorites?.imdb_id,
   }
 
-  console.log(favorites)
+  // console.log(favorites)
+
+  //need to extract tokenId and set url like `https://vue-http-demo-85e9e.firebaseio.com/coaches/${userId}.json?auth=` + token,
 
   const addHandler = async movie => {
     await fetch(`https://test-d8d3f-default-rtdb.firebaseio.com//movies.json`, {

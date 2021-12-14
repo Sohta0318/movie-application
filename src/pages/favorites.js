@@ -35,7 +35,7 @@ const Favorites = () => {
           style={{
             backgroundImage: "url(" + BgImg + ")",
             backgroundRepeat: "no-repeat",
-            backgroundPosition: "0",
+            backgroundPosition: "50%",
             backgroundSize: "contain",
             // opacity: "0.6",
           }}
