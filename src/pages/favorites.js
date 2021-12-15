@@ -13,7 +13,7 @@ const Favorites = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `https://test-d8d3f-default-rtdb.firebaseio.com/movies.json`
+        `https://test-d8d3f-default-rtdb.firebaseio.com/movies/${id}.json`
       )
       const data = await response.json()
       setData(data)

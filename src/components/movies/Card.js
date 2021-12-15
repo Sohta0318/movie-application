@@ -1,6 +1,7 @@
 import React from "react"
 import { FcClapperboard, FcFilm } from "react-icons/fc"
 
+//image_url
 const Movie = ({ title, banner: image, rating }) => {
   return (
     <div>
