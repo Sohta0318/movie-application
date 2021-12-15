@@ -15,6 +15,7 @@ const Favorites = () => {
         `https://test-d8d3f-default-rtdb.firebaseio.com/movies/${id}/.json`
       )
       const data = await response.json()
+      console.log(data)
       setData(data)
     }
     fetchData()
@@ -23,8 +24,6 @@ const Favorites = () => {
   for (const i in data) {
     obj.push(data[i])
   }
-
-  console.log(obj)
 
   return (
     <>
@@ -35,7 +34,7 @@ const Favorites = () => {
           style={{
             backgroundImage: "url(" + BgImg + ")",
             backgroundRepeat: "no-repeat",
-            backgroundPosition: "0",
+            backgroundPosition: "50%",
             backgroundSize: "contain",
             // opacity: "0.6",
           }}
