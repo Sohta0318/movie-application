@@ -40,14 +40,10 @@ const Movies = () => {
   //need to extract tokenId and set url like `https://vue-http-demo-85e9e.firebaseio.com/coaches/${userId}.json?auth=` + token,
 
   const addHandler = async movie => {
-    await fetch(
-      `https://aaaa-628ee-default-rtdb.firebaseio.com/movies.json?auth=` +
-        token,
-      {
-        method: "POST",
-        body: JSON.stringify(movie),
-      }
-    )
+    await fetch(`https://test-d8d3f-default-rtdb.firebaseio.com/movies.json?`, {
+      method: "POST",
+      body: JSON.stringify(movie),
+    })
   }
 
   const handleSubmit = e => {
