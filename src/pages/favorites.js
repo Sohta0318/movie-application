@@ -7,18 +7,19 @@ const Favorites = () => {
   const { isLoggedIn, profile } = useAuth()
   const id = profile?.uid
   const name = profile?.displayName
+  const token = localStorage.getItem("token")
   const [data, setData] = useState({})
   const obj = []
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `https://test-d8d3f-default-rtdb.firebaseio.com//movies.json`
+        `https://aaaa-628ee-default-rtdb.firebaseio.com/movies/${id}.json?auth=${token}`
       )
       const data = await response.json()
       setData(data)
     }
     fetchData()
-  }, [])
+  })
 
   for (const i in data) {
     obj.push(data[i])

@@ -44,17 +44,31 @@ const AllMovies = ({ setChoice }) => {
     })
   })
 
-  const singleCard = (movie, index) => {
+  const singleCard = movie => {
     return (
-      <label key={index}>
+      <label key={movie.imdb_id}>
         <input type="radio" value={JSON.stringify(movie)}></input>
         <Movie {...movie} />
       </label>
     )
   }
+
+  // IE11でも使える（Babel + polyfill 未使用）
+  function filterUniqueItemsById(array) {
+    // idを集約した配列を作成
+    const itemIds = array.map(function (item) {
+      return item.imdb_id
+    })
+    //
+    return array.filter(function (item, index) {
+      return itemIds.indexOf(item.imdb_id) === index
+    })
+  }
+  const uniqueItems = filterUniqueItemsById(all)
+
   return (
     <div className="movies-list" onChange={e => setChoice(e.target.value)}>
-      {all.map(movie => {
+      {uniqueItems.map(movie => {
         return singleCard(movie)
       })}
     </div>

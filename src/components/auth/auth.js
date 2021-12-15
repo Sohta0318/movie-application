@@ -5,17 +5,22 @@ import React from "react"
 const Auth = () => {
   const { isLoggedIn } = useAuth()
 
+  const onClick = () => {
+    auth.signOut()
+    localStorage.removeItem("token")
+  }
+
   return (
     <>
       {!isLoggedIn && (
         <SocialLogins
           onSuccess={user => {
-            console.log(user)
+            localStorage.setItem("token", user.credential.idToken)
             navigate(`/home`)
           }}
         />
       )}
-      {isLoggedIn && <button onClick={() => auth.signOut()}>Log out</button>}
+      {isLoggedIn && <button onClick={onClick}>Log out</button>}
     </>
   )
 }

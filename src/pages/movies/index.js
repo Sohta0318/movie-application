@@ -9,13 +9,17 @@ export const State = createContext()
 
 const Movies = () => {
   const { isLoggedIn, profile } = useAuth()
+
   const id = profile?.uid
   const name = profile?.displayName
+
+  const token = localStorage.getItem("token")
   const favorites = useSelector(state => state.first.data)
   const dispatch = useDispatch()
   const [option, setOption] = useState()
   const [para, setPara] = useState()
   const [choice, setChoice] = useState(null)
+
   const value = { option, setOption, para, setPara }
 
   const movie = {
@@ -33,16 +37,17 @@ const Movies = () => {
     id: favorites?.imdb_id,
   }
 
-  // console.log(favorites)
-
   //need to extract tokenId and set url like `https://vue-http-demo-85e9e.firebaseio.com/coaches/${userId}.json?auth=` + token,
 
   const addHandler = async movie => {
-    await fetch(`https://test-d8d3f-default-rtdb.firebaseio.com//movies.json`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(movie),
-    })
+    await fetch(
+      `https://aaaa-628ee-default-rtdb.firebaseio.com/movies.json?auth=` +
+        token,
+      {
+        method: "POST",
+        body: JSON.stringify(movie),
+      }
+    )
   }
 
   const handleSubmit = e => {
@@ -53,6 +58,7 @@ const Movies = () => {
     addHandler(movie)
   }
 
+  console.log(token)
   return (
     <>
       {isLoggedIn && (
