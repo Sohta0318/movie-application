@@ -7,7 +7,7 @@ const Favorites = () => {
   const { isLoggedIn, profile } = useAuth()
   const id = profile?.uid
   const name = profile?.displayName
-  const token = localStorage.getItem("token")
+
   const [data, setData] = useState({})
   const obj = []
   useEffect(() => {

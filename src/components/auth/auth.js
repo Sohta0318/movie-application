@@ -7,7 +7,6 @@ const Auth = () => {
 
   const onClick = () => {
     auth.signOut()
-    localStorage.removeItem("token")
   }
 
   return (
@@ -15,7 +14,7 @@ const Auth = () => {
       {!isLoggedIn && (
         <SocialLogins
           onSuccess={user => {
-            localStorage.setItem("token", user.credential.idToken)
+            console.log(user)
             navigate(`/home`)
           }}
         />

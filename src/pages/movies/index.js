@@ -13,7 +13,6 @@ const Movies = () => {
   const id = profile?.uid
   const name = profile?.displayName
 
-  const token = localStorage.getItem("token")
   const favorites = useSelector(state => state.first.data)
   const dispatch = useDispatch()
   const [option, setOption] = useState()
@@ -57,7 +56,6 @@ const Movies = () => {
     addHandler(movie)
   }
 
-  console.log(token)
   return (
     <>
       {isLoggedIn && (
