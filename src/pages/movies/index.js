@@ -11,7 +11,6 @@ const Movies = () => {
   const { isLoggedIn, profile } = useAuth()
 
   const id = profile?.uid
-  const name = profile?.displayName
 
   const favorites = useSelector(state => state.first.data)
   const dispatch = useDispatch()

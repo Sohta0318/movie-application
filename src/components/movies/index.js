@@ -39,8 +39,8 @@ const AllMovies = ({ setChoice }) => {
   } = data
 
   details.map(detail => {
-    detail.data.map(item => {
-      all.push(item.results)
+    return detail.data.map(item => {
+      return all.push(item.results)
     })
   })
 

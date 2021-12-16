@@ -6,7 +6,6 @@ const Favorites = () => {
   const dataRef = useRef()
   const { isLoggedIn, profile } = useAuth()
   const id = profile?.uid
-  const name = profile?.displayName
 
   const [data, setData] = useState({})
   const obj = []

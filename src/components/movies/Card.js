@@ -2,7 +2,7 @@ import React from "react"
 import { FcClapperboard, FcFilm } from "react-icons/fc"
 
 //image_url
-const Movie = ({ title, banner: image, rating }) => {
+const Movie = ({ title, image_url: image, rating }) => {
   return (
     <div>
       <img src={image} alt={title} className="movie-image" />
