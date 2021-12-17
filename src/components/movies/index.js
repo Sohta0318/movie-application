@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Fragment, useRef, useState } from "react"
 import Movie from "./Card"
 import { useStaticQuery, graphql } from "gatsby"
 
@@ -31,6 +31,8 @@ const query = graphql`
 
 const AllMovies = ({ setChoice }) => {
   const data = useStaticQuery(query)
+  const inputRef = useRef()
+  // const [match, setMatch] = useState([])
 
   const all = []
 
@@ -66,12 +68,25 @@ const AllMovies = ({ setChoice }) => {
   }
   const uniqueItems = filterUniqueItemsById(all)
 
+  const keyPressHandler = () => {
+    const title = inputRef.current.value.trim()
+    // setMatch(uniqueItems.filter(item => item.title.includes(title)))
+    const match = uniqueItems.filter(item => item.title.includes(title))
+    console.log(match)
+  }
+
+  // console.log(match)
+
   return (
-    <div className="movies-list" onChange={e => setChoice(e.target.value)}>
-      {uniqueItems.map(movie => {
-        return singleCard(movie)
-      })}
-    </div>
+    <Fragment>
+      <label htmlFor="movie">Search</label>
+      <input id="movie" ref={inputRef} onKeyPress={keyPressHandler} />
+      <div className="movies-list" onChange={e => setChoice(e.target.value)}>
+        {uniqueItems.map(movie => {
+          return singleCard(movie)
+        })}
+      </div>
+    </Fragment>
   )
 }
 
