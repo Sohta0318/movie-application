@@ -32,7 +32,8 @@ const query = graphql`
 const AllMovies = ({ setChoice }) => {
   const data = useStaticQuery(query)
   const inputRef = useRef()
-  // const [match, setMatch] = useState([])
+  const [match, setMatch] = useState([])
+  const [search, setSearch] = useState(false)
 
   const all = []
 
@@ -70,22 +71,30 @@ const AllMovies = ({ setChoice }) => {
 
   const keyPressHandler = () => {
     const title = inputRef.current.value.trim()
-    // setMatch(uniqueItems.filter(item => item.title.includes(title)))
-    const match = uniqueItems.filter(item => item.title.includes(title))
-    console.log(match)
+    setMatch(uniqueItems.filter(item => item.title.includes(title)))
+    setSearch(true)
   }
 
-  // console.log(match)
+  console.log(match)
 
   return (
     <Fragment>
       <label htmlFor="movie">Search</label>
       <input id="movie" ref={inputRef} onKeyPress={keyPressHandler} />
-      <div className="movies-list" onChange={e => setChoice(e.target.value)}>
-        {uniqueItems.map(movie => {
-          return singleCard(movie)
-        })}
-      </div>
+      {search && (
+        <div className="movies-list" onChange={e => setChoice(e.target.value)}>
+          {match.map(movie => {
+            return singleCard(movie)
+          })}
+        </div>
+      )}
+      {!search && (
+        <div className="movies-list" onChange={e => setChoice(e.target.value)}>
+          {uniqueItems.map(movie => {
+            return singleCard(movie)
+          })}
+        </div>
+      )}
     </Fragment>
   )
 }
