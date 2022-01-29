@@ -39,15 +39,17 @@
 Global Styles
 ===============
 */
-* {
-  padding: 0;
+/* *,
+::after,
+::before {
   margin: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
+  padding: 0;
+  box-sizing: border-box;
+} */
 
+/* #gatsby-focus-wrapper {
+  height: 100%;
+} */
 html,
 body {
   background-color: #f1f1e9;
@@ -219,20 +221,13 @@ body {
 }
 
 /* movie list */
-.choose {
-  text-decoration: none;
-  margin-top: 4em;
-}
 .movies-list {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 3em;
-  margin-left: 6em;
-  margin-top: 8em;
+  margin-top: 3em;
 }
-.movie-image {
-  width: 200px;
-}
+
 .icon {
   display: flex;
 }
@@ -240,36 +235,34 @@ body {
 .rating {
   margin-right: 7em;
 }
-
-/* genre page */
 .byGenre {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 3em;
-  margin-top: 8em;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+  align-content: center;
 }
 .genreLink {
-  align-content: center;
-  margin-left: 5em;
-}
-
-/* Favorite page */
-
-.favorite {
-  margin-top: 5em;
-}
-
-.favoriteCard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 4em;
+  text-align: center;
 }
 .favorite-p {
+  display: inline-block;
+  text-align: center;
   text-decoration: none;
-  color: black;
+  margin: auto;
 }
+.favoriteCard {
+  margin: auto;
+}
+.favorite {
+  display: flex;
+  flex-direction: column;
+  line-height: 4em;
+  /* font-family: "Courier New", Courier, monospace; */
+  font-size: x-large;
 
-.favorite-p:hover {
-  transform: scale(1.4);
+  background-repeat: no-repeat;
+  background-position: top 50% right 100px;
+  background-size: 12em;
+  /* background-clip: content-box; */
+  margin-top: 10%;
 }

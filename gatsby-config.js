@@ -24,6 +24,7 @@ module.exports = {
     `gatsby-transformer-sharp`, // Needed for dynamic images
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-nodejs`,
+    `gatsby-plugin-material-ui`,
 
     {
       resolve: `gatsby-plugin-create-client-paths`,

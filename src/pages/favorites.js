@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react"
 import { useAuth } from "gatsby-theme-firebase"
-import { Link } from "gatsby"
 const Favorites = () => {
   const [BgImg, setBgImg] = useState("")
   const dataRef = useRef()
@@ -24,7 +23,17 @@ const Favorites = () => {
     obj.push(data[i])
   }
 
-  console.log(obj)
+  function filterUniqueItemsById(array) {
+    // idを集約した配列を作成
+    const itemIds = array.map(function (item) {
+      return item.id
+    })
+    //
+    return array.filter(function (item, index) {
+      return itemIds.indexOf(item.id) === index
+    })
+  }
+  const uniqueItems = filterUniqueItemsById(obj)
 
   return (
     <>
@@ -34,22 +43,19 @@ const Favorites = () => {
           ref={dataRef}
           style={{
             backgroundImage: "url(" + BgImg + ")",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "50%",
-            backgroundSize: "contain",
-            // opacity: "0.6",
           }}
         >
-          {obj.map(data => {
+          {uniqueItems.map(data => {
             return (
               <div
+                role="none"
                 key={data.id}
                 className="favoriteCard"
                 onMouseEnter={() => setBgImg(data.banner)}
               >
-                <Link to={data.trailer} className="favorite-p">
+                <a href={data.trailer} className="favorite-p">
                   {data.title}
-                </Link>
+                </a>
               </div>
             )
           })}

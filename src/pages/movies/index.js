@@ -59,14 +59,14 @@ const Movies = () => {
     <>
       {isLoggedIn && (
         <State.Provider value={value}>
-          <>
+          <div style={{ marginTop: "3em" }}>
             <Genre />
             <form onChange={handleSubmit}>
               <div>
                 <AllMovies setChoice={setChoice} />
               </div>
             </form>
-          </>
+          </div>
         </State.Provider>
       )}
     </>

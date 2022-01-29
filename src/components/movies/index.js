@@ -50,7 +50,11 @@ const AllMovies = ({ setChoice }) => {
   const singleCard = movie => {
     return (
       <label key={movie.imdb_id}>
-        <input type="radio" value={JSON.stringify(movie)}></input>
+        <input
+          type="radio"
+          value={JSON.stringify(movie)}
+          style={{ display: "none" }}
+        ></input>
         <Movie {...movie} />
       </label>
     )
