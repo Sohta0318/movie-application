@@ -1,19 +1,23 @@
 import React, { useState, createContext } from "react"
-import AllMovies from "../components/movies"
-import Genre from "../components/genre"
+import AllMovies from "../../components/movies"
+import Genre from "../../components/genre"
 import { useDispatch, useSelector } from "react-redux"
-import { setMovie } from "../store/slice"
+import { setMovie } from "../../store/slice"
 import { useAuth } from "gatsby-theme-firebase"
 
 export const State = createContext()
 
 const Movies = () => {
-  const { isLoggedIn } = useAuth()
+  const { isLoggedIn, profile } = useAuth()
+
+  const id = profile?.uid
+
   const favorites = useSelector(state => state.first.data)
   const dispatch = useDispatch()
   const [option, setOption] = useState()
   const [para, setPara] = useState()
   const [choice, setChoice] = useState(null)
+
   const value = { option, setOption, para, setPara }
 
   const movie = {
@@ -31,12 +35,16 @@ const Movies = () => {
     id: favorites?.imdb_id,
   }
 
+  //need to extract tokenId and set url like `https://vue-http-demo-85e9e.firebaseio.com/coaches/${userId}.json?auth=` + token,
+
   const addHandler = async movie => {
-    await fetch("https://movie-931e2-default-rtdb.firebaseio.com/movies.json", {
-      method: "POST",
-      body: JSON.stringify(movie),
-      headers: { "Content-Type": "application/json" },
-    })
+    await fetch(
+      `https://test-d8d3f-default-rtdb.firebaseio.com/movies/${id}.json?`,
+      {
+        method: "POST",
+        body: JSON.stringify(movie),
+      }
+    )
   }
 
   const handleSubmit = e => {
@@ -47,21 +55,18 @@ const Movies = () => {
     addHandler(movie)
   }
 
-  // console.log(movie)
-  // console.log(favorites)
-
   return (
     <>
       {isLoggedIn && (
         <State.Provider value={value}>
-          <>
+          <div style={{ marginTop: "3em" }}>
             <Genre />
             <form onChange={handleSubmit}>
               <div>
                 <AllMovies setChoice={setChoice} />
               </div>
             </form>
-          </>
+          </div>
         </State.Provider>
       )}
     </>
